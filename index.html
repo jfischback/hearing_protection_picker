@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hearing Protection Picker | OEMS</title>
+  <meta name="description" content="Checks whether a hearing protector is adequate for a worker's 8-hour noise exposure, using OSHA Appendix B and NIOSH derating.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brand">OEMS</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="intro">
+      <p class="eyebrow">Hearing Conservation Program</p>
+      <h1>Hearing Protection Picker</h1>
+      <p class="lead">Checks whether a hearing protector is adequate for a worker's 8-hour noise exposure, using OSHA Appendix B and NIOSH derating.</p>
+    </section>
+
+    <section class="card">
+      <h2>Inputs</h2>
+      <form id="form" class="fields" autocomplete="off" novalidate>
+        <div class="field">
+          <label for="twa">8-hour TWA noise level (dBA)</label>
+          <input id="twa" type="number" inputmode="decimal" min="0" step="any">
+          <p class="hint">8-hour TWA from dosimetry, in dBA.</p>
+        </div>
+        <div class="field">
+          <label for="target">Target protected level (dBA)</label>
+          <select id="target">
+            <option value="85">85</option>
+            <option value="90" selected>90</option>
+          </select>
+          <p class="hint">90 dBA, or 85 dBA if the worker has an STS.</p>
+        </div>
+        <div class="field">
+          <label for="type">Protector type</label>
+          <select id="type">
+            <option value="">Select…</option>
+            <option>earmuff</option>
+            <option>foam plug</option>
+            <option>premolded plug</option>
+            <option>other plug</option>
+          </select>
+          <p class="hint">NIOSH derating: earmuff 25%, foam 50%, other 70%.</p>
+        </div>
+        <div class="field">
+          <label for="nrr">Protector NRR</label>
+          <input id="nrr" type="number" inputmode="decimal" min="0" step="any">
+          <p class="hint">Labeled NRR from the package, in dB.</p>
+        </div>
+        <div class="field">
+          <label for="double">Double protection</label>
+          <select id="double">
+            <option>Yes</option>
+            <option selected>No</option>
+          </select>
+          <p class="hint">Yes adds 5 dB to the higher of the two NRRs.</p>
+        </div>
+        <div class="field">
+          <label for="type2">Second protector type (if double)</label>
+          <select id="type2">
+            <option value="">Select…</option>
+            <option>earmuff</option>
+            <option>foam plug</option>
+            <option>premolded plug</option>
+            <option>other plug</option>
+          </select>
+          <p class="hint">Only needed if double protection is Yes.</p>
+        </div>
+        <div class="field">
+          <label for="nrr2">Second NRR (if double)</label>
+          <input id="nrr2" type="number" inputmode="decimal" min="0" step="any">
+          <p class="hint">Second protector's labeled NRR, if double is Yes.</p>
+        </div>
+        <div class="field">
+          <label for="sts">Standard threshold shift (STS)</label>
+          <select id="sts">
+            <option>Yes</option>
+            <option selected>No</option>
+          </select>
+          <p class="hint">Yes if the worker has a recorded STS; use 85 dBA.</p>
+        </div>
+        <div class="field">
+          <label for="par">Fit-test PAR, dB (optional)</label>
+          <input id="par" type="number" inputmode="decimal" min="0" step="any">
+          <p class="hint">Optional. Fit-test PAR in dB; replaces NIOSH derating.</p>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" aria-live="polite">
+      <h2>Results</h2>
+      <div class="compare">
+        <div class="col">
+          <p class="col-title">Compliance <span>(OSHA App B)</span></p>
+          <p class="label">Estimated protected level (dBA)</p>
+          <p class="big" id="osha"></p>
+          <p class="badge" id="oshaResult"></p>
+          <p class="label">Minimum NRR needed <span>(higher protector if double)</span></p>
+          <p class="mid" id="oshaMinNrr"></p>
+        </div>
+        <div class="col">
+          <p class="col-title">Realistic <span>(NIOSH by type, or PAR)</span></p>
+          <p class="label">Estimated protected level (dBA)</p>
+          <p class="big" id="realistic"></p>
+          <p class="badge" id="realisticResult"></p>
+          <p class="label">Minimum NRR needed <span>(higher protector if double)</span></p>
+          <p class="mid" id="realisticMinNrr"></p>
+        </div>
+      </div>
+      <div class="row">
+        <p class="label">Program status (1910.95)</p>
+        <p id="programStatus"></p>
+      </div>
+      <div class="row">
+        <p class="label">Note</p>
+        <p id="note"></p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>NIOSH derating factors</h2>
+      <table>
+        <thead>
+          <tr><th>Protector type</th><th>Subtract from labeled NRR</th><th>NRR multiplier</th></tr>
+        </thead>
+        <tbody id="derating"></tbody>
+      </table>
+    </section>
+
+    <p class="judgment">This tool supports, and does not replace, your own professional judgment. Review the results against the full workplace situation before choosing hearing protection.</p>
+
+    <p class="source">Source: OSHA 29 CFR 1910.95 and Appendix B; NIOSH Criteria for a Recommended Standard: Occupational Noise Exposure (1998), NRR derating by protector type; double protection +5 dB per OSHA Technical Manual, Section III, Chapter 5, Appendix F; fit-test PAR with double protection +5 dB per OSHA Safety and Health Management System Manual, Chapter 16.</p>
+  </main>
+
+  <script src="calc.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
