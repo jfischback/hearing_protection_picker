@@ -50,27 +50,25 @@ function update() {
     par: num("par"),
   });
 
-  const heroText = fmt(r.realistic);
-  $("realistic").textContent = heroText || "--";
-  $("realistic").parentElement.classList.toggle("text", typeof r.realistic !== "number");
-  setPill($("realisticResult"), r.realisticResult, "Realistic: ");
-
   const hi = Math.max(100, typeof twa === "number" ? twa : 0, target);
-  $("targetLine").style.setProperty("--p", (target - 60) / (hi - 60));
-  $("targetLabel").textContent = "Target " + target;
-  setBar($("barTwa"), twa, hi);
-  setBar($("barOsha"), r.osha, hi);
-  setBar($("barRealistic"), r.realistic, hi);
-  $("barOsha").classList.toggle("fail", r.oshaResult === "FAIL");
-  $("barRealistic").classList.toggle("fail", r.realisticResult === "FAIL");
-  $("valTwa").textContent = fmt(twa);
-  $("osha").textContent = fmt(r.osha);
-  $("valRealistic").textContent = typeof r.realistic === "number" ? fmt(r.realistic) : "";
-  setPill($("oshaResult"), r.oshaResult, "");
-  setPill($("realisticResult2"), r.realisticResult, "");
+  const cards = [
+    ["osha", r.osha, r.oshaResult, "barOsha", "oshaTick", "oshaTarget"],
+    ["realistic", r.realistic, r.realisticResult, "barRealistic", "realisticTick", "realisticTarget"],
+  ];
+  for (const [id, value, result, bar, tick, label] of cards) {
+    $(id).textContent = fmt(value) || "--";
+    $(id).parentElement.classList.toggle("text", typeof value !== "number" && value !== "");
+    setPill($(id + "Result"), result, "");
+    setBar($(bar), value, hi);
+    $(bar).classList.toggle("fail", result === "FAIL");
+    $(tick).style.left = ((target - 60) / (hi - 60)) * 100 + "%";
+    $(label).textContent = "Target " + target + " dBA";
+  }
 
-  $("oshaMinNrr").textContent = fmt(r.oshaMinNrr);
-  $("realisticMinNrr").textContent = fmt(r.realisticMinNrr);
+  for (const [id, value] of [["oshaMinNrr", r.oshaMinNrr], ["realisticMinNrr", r.realisticMinNrr]]) {
+    $(id).textContent = fmt(value);
+    $(id).classList.toggle("text", typeof value !== "number");
+  }
   $("programStatus").textContent = r.programStatus;
   $("note").textContent = r.note;
 }

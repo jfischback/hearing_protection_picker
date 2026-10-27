@@ -98,45 +98,28 @@
         </div>
       </form>
 
-      <section class="panel results" aria-live="polite">
-        <p class="pill" id="realisticResult"></p>
-        <p class="hero"><span id="realistic"></span><span class="hero-unit">dBA</span></p>
-        <p class="caption">Realistic protected level (NIOSH by type, or PAR).</p>
-
-        <div class="bars">
-          <div class="target" id="targetLine"><span id="targetLabel"></span></div>
-          <div class="bar-row">
-            <span class="bar-name">Exposure</span>
-            <span class="track"><span class="fill exposure" id="barTwa"></span></span>
-            <span class="bar-val" id="valTwa"></span>
-          </div>
-          <div class="bar-row">
-            <span class="bar-name">OSHA App. B</span>
-            <span class="track"><span class="fill osha" id="barOsha"></span></span>
-            <span class="bar-val"><span id="osha"></span> <span class="mini" id="oshaResult"></span></span>
-          </div>
-          <div class="bar-row">
-            <span class="bar-name">NIOSH realistic</span>
-            <span class="track"><span class="fill niosh" id="barRealistic"></span></span>
-            <span class="bar-val"><span id="valRealistic"></span> <span class="mini" id="realisticResult2"></span></span>
-          </div>
-        </div>
-
-        <div class="mins">
-          <div>
-            <p class="small">Minimum NRR, OSHA</p>
-            <p class="min" id="oshaMinNrr"></p>
-          </div>
-          <div>
-            <p class="small">Minimum NRR, NIOSH</p>
-            <p class="min" id="realisticMinNrr"></p>
-          </div>
-        </div>
-        <p class="small mins-note">Higher protector if double.</p>
-
-        <p class="status"><span class="small">Program status (1910.95)</span><span id="programStatus"></span></p>
-        <p class="status"><span class="small">Note</span><span id="note"></span></p>
-      </section>
+      <div class="outputs" aria-live="polite">
+        <section class="panel results out">
+          <div class="out-head"><p class="out-title">OSHA compliance</p><p class="pill" id="oshaResult"></p></div>
+          <p class="out-sub">29 CFR 1910.95 Appendix B formula</p>
+          <p class="hero"><span id="osha"></span><span class="hero-unit">dBA</span></p>
+          <div class="meter"><span class="track"><span class="fill osha" id="barOsha"></span></span><span class="tick" id="realisticTick"></span></div>
+          <p class="meter-cap"><span>Protected level</span><span id="realisticTarget"></span></p>
+          <div class="min-row"><span class="small">Minimum NRR needed</span><span class="min" id="oshaMinNrr"></span></div>
+        </section>
+        <section class="panel results out light">
+          <div class="out-head"><p class="out-title">Real world</p><p class="pill" id="realisticResult"></p></div>
+          <p class="out-sub">NIOSH derating by protector type, or fit-test PAR</p>
+          <p class="hero"><span id="realistic"></span><span class="hero-unit">dBA</span></p>
+          <div class="meter"><span class="track"><span class="fill niosh" id="barRealistic"></span></span><span class="tick" id="oshaTick"></span></div>
+          <p class="meter-cap"><span>Protected level</span><span id="oshaTarget"></span></p>
+          <div class="min-row"><span class="small">Minimum NRR needed</span><span class="min" id="realisticMinNrr"></span></div>
+        </section>
+        <section class="panel summary">
+          <p class="status"><span class="small">Program status (1910.95)</span><span id="programStatus"></span></p>
+          <p class="status"><span class="small">Note</span><span id="note"></span></p>
+        </section>
+      </div>
     </div>
 
     <footer class="foot">

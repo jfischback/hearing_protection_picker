@@ -71,7 +71,7 @@ h1 {
 /* Two panels */
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 340px;
+  grid-template-columns: minmax(0, 1fr) 360px;
   gap: 18px;
   align-items: start;
 }
@@ -225,26 +225,17 @@ h1 {
 .hero.text .hero-unit { display: none; }
 .hero-unit { font-size: 1rem; font-weight: 400; letter-spacing: 0; color: var(--dark-muted); }
 
-.caption { margin-top: 12px !important; font-size: 0.85rem; color: #d1d5db; }
+.out { padding: 20px 22px; }
+.outputs { display: grid; gap: 14px; }
+.out-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.out-title { font-weight: 700; font-size: 1rem; }
+.out-sub { margin-top: 2px !important; font-size: 0.78rem; color: var(--dark-muted); }
+.out .hero { font-size: 3.4rem; margin-top: 12px !important; }
 
-.bars {
-  position: relative;
-  margin-top: 24px;
-  padding-top: 22px;
-}
-
-.bar-row {
-  display: grid;
-  grid-template-columns: 92px 1fr 82px;
-  align-items: center;
-  gap: 10px;
-  padding: 5px 0;
-  font-size: 0.78rem;
-}
-
-.bar-name { color: #d1d5db; }
+.meter { position: relative; margin-top: 14px; }
 
 .track {
+  display: block;
   position: relative;
   height: 7px;
   border-radius: 999px;
@@ -259,68 +250,39 @@ h1 {
   transition: width 0.25s ease;
 }
 
-.fill.exposure { background: #6b7280; }
 .fill.osha { background: var(--accent); }
 .fill.niosh { background: var(--green); }
 .fill.fail { background: var(--red); }
 
-.bar-val { text-align: right; font-weight: 600; font-size: 0.85rem; white-space: nowrap; }
-
-.mini {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 1px 5px;
-  border-radius: 4px;
-  vertical-align: 1px;
-}
-
-.mini.pass { color: var(--green); background: rgba(52, 211, 153, 0.14); }
-.mini.fail { color: var(--red); background: rgba(248, 113, 113, 0.14); }
-
-/* Target marker sits over the track column only */
-.target {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(102px + (100% - 194px) * var(--p, 0));
-  width: 0;
-  border-left: 1px dashed #6b7280;
-  pointer-events: none;
-}
-
-.target span {
-  position: absolute;
-  top: 0;
-  transform: translateX(-50%);
-  font-size: 0.72rem;
-  color: #d1d5db;
-  white-space: nowrap;
-}
-
-.mins {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-top: 22px;
-  padding-top: 18px;
-  border-top: 1px solid var(--dark-line);
-}
-
-.mins > div + div { border-left: 1px solid var(--dark-line); padding-left: 18px; }
+.tick { position: absolute; top: -4px; bottom: -4px; width: 0; border-left: 1.5px dashed #9ca3af; }
+.meter-cap { display: flex; justify-content: space-between; margin-top: 6px !important; font-size: 0.72rem; color: var(--dark-muted); }
 
 .small { font-size: 0.75rem; color: var(--dark-muted); }
 
-.min { margin-top: 4px !important; font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
-.mins-note { margin-top: 6px !important; }
+.min-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 14px !important; padding-top: 12px; border-top: 1px solid var(--dark-line); }
+.min { font-size: 1.2rem; font-weight: 700; line-height: 1.2; text-align: right; }
+
+/* Light card (Real world) */
+.out.light { background: #fff; color: var(--text); box-shadow: none; border: 1px solid var(--line); }
+.out.light .track { background: var(--field); }
+.out.light .min-row { border-color: var(--line); }
+.out.light .out-sub, .out.light .small, .out.light .meter-cap, .out.light .hero-unit { color: var(--muted); }
+.out.light .pill.pass { color: #059669; background: #d1fae5; }
+.out.light .pill.fail { color: #dc2626; background: #fee2e2; }
+
+/* Program status and note */
+.summary { background: #fff; border: 1px solid var(--line); padding: 16px 22px; }
+.summary p { margin: 0; }
+.summary .small { color: var(--muted); }
 
 .status {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-top: 16px !important;
   font-size: 0.82rem;
-  color: #e5e7eb;
 }
+
+.status + .status { margin-top: 12px; }
 
 /* Footer */
 .foot {
@@ -372,3 +334,7 @@ legend.name + .hint { clear: both; }
   font-weight: 500;
 }
 .auto-note[hidden] { display: none; }
+
+/* Messages such as "Enter 2nd NRR" show at text size, not number size. */
+.out .hero.text { font-size: 1.15rem; font-weight: 600; letter-spacing: 0; margin-top: 16px !important; }
+.min.text { font-size: 0.9rem; font-weight: 600; }
