@@ -1,6 +1,6 @@
-# OEMS Hearing Protection Picker
+# OEMS Noise Reduction Calculator
 
-A web version of the "Hearing Protection Picker V2" tab of the Hearing Protection Picker Google Sheet. It checks whether a hearing protector is adequate for a worker's 8-hour noise exposure, using OSHA Appendix B and NIOSH derating.
+A web calculator based on the "Hearing Protection Picker V2" tab of the Hearing Protection Picker Google Sheet. It checks whether a hearing protector is adequate for a worker's 8-hour noise exposure, using OSHA Appendix B and NIOSH derating.
 
 Plain HTML, CSS, and JavaScript with no build step. To deploy on Vercel, import the repo and leave the framework preset as "Other".
 
