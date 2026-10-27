@@ -356,3 +356,11 @@ legend.name + .hint { clear: both; }
 .box input::-webkit-outer-spin-button,
 .box input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .box input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+/* Disclaimer */
+.foot { max-width: 720px; border-top: 1px solid var(--line); margin-top: 20px; padding-top: 24px; }
+.foot-lead { color: var(--text); font-weight: 500; }
+.terms { margin: 12px 0; padding-left: 18px; }
+.terms li { margin-bottom: 8px; padding-left: 2px; }
+.terms strong { color: var(--text); font-weight: 600; }
+.copyright { margin-top: 14px !important; }
