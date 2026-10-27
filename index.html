@@ -32,11 +32,12 @@
           </div>
           <fieldset class="field">
             <legend class="name">Target reduction level</legend>
-            <p class="hint">Use 85 dBA if the worker has an STS.</p>
+            <p class="hint">Level to stay under while wearing protection. Switches to 85 dBA if the worker has an STS.</p>
             <div class="seg">
               <label><input type="radio" name="target" value="85"><span>85 dBA</span></label>
               <label><input type="radio" name="target" value="90" checked><span>90 dBA</span></label>
             </div>
+            <p class="auto-note" id="stsNote" hidden>Set to 85 dBA because the worker has a standard threshold shift (STS).</p>
           </fieldset>
 
           <fieldset class="field full">

@@ -75,6 +75,34 @@ function update() {
   $("note").textContent = r.note;
 }
 
+// STS = Yes switches the target to 85 dBA and remembers the earlier choice,
+// which comes back when STS is set to No. A manual target change clears the note.
+let targetBeforeSts = null;
+
+function setTarget(value) {
+  form.querySelector(`input[name="target"][value="${value}"]`).checked = true;
+}
+
+form.querySelectorAll('input[name="sts"]').forEach((el) =>
+  el.addEventListener("change", () => {
+    if (choice("sts") === "Yes") {
+      targetBeforeSts = choice("target");
+      setTarget("85");
+      $("stsNote").hidden = false;
+    } else {
+      if (targetBeforeSts !== null && !$("stsNote").hidden) setTarget(targetBeforeSts);
+      targetBeforeSts = null;
+      $("stsNote").hidden = true;
+    }
+  })
+);
+
+form.querySelectorAll('input[name="target"]').forEach((el) =>
+  el.addEventListener("change", () => {
+    $("stsNote").hidden = true;
+  })
+);
+
 form.addEventListener("input", update);
 form.addEventListener("change", update);
 update();
