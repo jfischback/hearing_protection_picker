@@ -30,30 +30,68 @@ body {
 
 /* Header */
 .topbar {
+  position: relative;
+  color: #fff;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(100deg, #0a1631 0%, #0f2b55 50%, #1b4f86 100%);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
+}
+
+/* Fade the grid in toward the right, as in the design */
+.topbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, #0a1631 0%, rgba(15, 43, 85, 0.85) 45%, rgba(27, 79, 134, 0) 80%);
+  pointer-events: none;
+}
+
+.topbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #38bdf8 0%, #6366f1 50%, #38bdf8 100%);
+}
+
+.topbar-inner {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 18px;
-  padding-bottom: 18px;
+  gap: 24px;
+  padding-top: 22px;
+  padding-bottom: 26px;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.02em;
+.brand { display: flex; flex-direction: column; gap: 4px; }
+
+.brand-name {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
 
-.mark {
-  width: 20px;
-  height: 20px;
-  border-radius: 5px;
-  background: var(--text);
+.brand-full {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #cbd5e1;
 }
 
-.tag { font-size: 0.8rem; color: var(--muted); }
+.tag {
+  padding-left: 18px;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.9rem;
+  color: #dbe4f0;
+  text-align: right;
+}
 
 /* Intro */
 .intro { padding: 40px 0 36px; max-width: 620px; }
@@ -301,6 +339,8 @@ h1 {
 @media (max-width: 520px) {
   .intro { padding: 24px 0 24px; }
   .tag { display: none; }
+  .brand-name { font-size: 1.7rem; }
+  .brand-full { font-size: 0.6rem; letter-spacing: 0.14em; }
   .panel { padding: 20px 16px; }
   .grid { grid-template-columns: 1fr; }
   .grid > .field:nth-child(2) { padding-top: 16px; }
@@ -338,3 +378,7 @@ legend.name + .hint { clear: both; }
 /* Messages such as "Enter 2nd NRR" show at text size, not number size. */
 .out .hero.text { font-size: 1.15rem; font-weight: 600; letter-spacing: 0; margin-top: 16px !important; }
 .min.text { font-size: 0.9rem; font-weight: 600; }
+
+@media (max-width: 900px) {
+  .topbar .tag { display: none; }
+}
