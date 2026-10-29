@@ -8,3 +8,4 @@ Plain HTML, CSS, and JavaScript with no build step. To deploy on Vercel, import 
 - `calc.js`: the calculation logic, with the sheet cell each piece comes from
 - `app.js`: connects the form to the calculation
 - `style.css`: the styles
+- `disclaimer.css`, `disclaimer.js`: the first-visit disclaimer gate (agreement is saved in localStorage as `oems_disclaimer_v1`)
